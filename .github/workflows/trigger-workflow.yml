@@ -1,8 +1,19 @@
-name: Test reusable workflow
+name: Main Workflow
 
 on:
   workflow_dispatch:
 
 jobs:
-  trigger-workflow:
-    uses: ./.github/workflows/reusable-workflow.yml
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Use the custom action to set up Node.js, Ruby, and Java
+      - name: Setup Environments
+        uses: ./.github/actions/setup-environment
+
+      # Additional steps specific to this job
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Start the app
+        run: yarn start

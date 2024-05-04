@@ -1,0 +1,15 @@
+{
+  "name": "test-bundle",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/seanfar/test-bundle.git",
+  "author": "<sfarahdel@justworks.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0"
+  }
+}

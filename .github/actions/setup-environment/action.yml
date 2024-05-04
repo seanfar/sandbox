@@ -1,0 +1,21 @@
+# .github/actions/setup-environments/action.yml
+name: 'Setup Environments'
+description: 'Sets up Node.js, Ruby, and Java environments'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+    # - name: Setup Ruby
+    #   uses: ruby/setup-ruby@v1
+    #   with:
+    #     ruby-version: ${{ inputs.ruby-version }}
+    # - name: Setup Java
+    #   uses: actions/setup-java@v2
+    #   with:
+    #     java-version: ${{ inputs.java-version }}
