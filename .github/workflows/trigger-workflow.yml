@@ -7,6 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       # Use the custom action to set up Node.js, Ruby, and Java
       - name: Setup Environments
         uses: ./.github/actions/setup-environment
