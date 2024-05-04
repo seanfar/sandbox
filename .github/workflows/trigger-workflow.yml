@@ -5,7 +5,4 @@ on:
 
 jobs:
   trigger-workflow:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger workflow
-        uses: ./.github/workflows/blank.yml
+    uses: ./.github/workflows/reusable-workflow.yml
