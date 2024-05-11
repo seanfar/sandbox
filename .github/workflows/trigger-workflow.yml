@@ -11,12 +11,14 @@ on:
     branches:
       - main
   release:
-    types:
-      - published
+    types: [published]
+
+env:
+  ENVIRONMENT_NAME: ${{ github.event_name == 'release' && 'Production' || inputs.environment || 'Staging' }}
 
 jobs:
   build:
-    environment: ${{ github.event.action == 'published' && 'Production' || 'Staging' }}
+    environment: ${{ env.ENVIRONMENT_NAME }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -26,10 +28,7 @@ jobs:
       - name: Setup Environments
         uses: ./.github/actions/setup-environment
         with:
-          eventName: ${{ github.event_name }}
-          ref: ${{ github.ref }}
-          environment: ${{ github.event.inputs.environment }}
-
+          event_name: ${{ github.event_name }}
       - name: Print environment name
         run: echo "The environment name is $ENVIRONMENT_NAME"
 
