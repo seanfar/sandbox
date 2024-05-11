@@ -9,5 +9,14 @@ runs:
       uses: actions/setup-node@v4
       with:
         node-version: 18
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
+
+    - name: Set environment name
+      shell: bash
+      run: |
+        if [[ "${{ inputs.eventName }}" == "push" && "${{ inputs.ref }}" == "refs/heads/main" ]]; then
+          echo "ENVIRONMENT_NAME=Staging" >> $GITHUB_ENV
+        elif [[ "${{ inputs.eventName }}" == "workflow_dispatch" ]]; then
+          echo "ENVIRONMENT_NAME=${{ inputs.environmentName }}" >> $GITHUB_ENV
+        else
+          echo "ENVIRONMENT_NAME=Production" >> $GITHUB_ENV
+        fi
