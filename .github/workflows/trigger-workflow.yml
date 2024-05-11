@@ -5,10 +5,19 @@ on:
 
 jobs:
   build:
+    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Print environment name
+        run: echo "The environment name is ${{ github.event.deployment.environment }}"
+
+      - name: Print environment name
+        run: echo "The environment name is $ENVIRONMENT_NAME"
+        env:
+          ENVIRONMENT_NAME: ${{ toJson(github.job) }}
 
       # Use the custom action to set up Node.js, Ruby, and Java
       - name: Setup Environments
