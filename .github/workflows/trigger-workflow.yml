@@ -25,7 +25,7 @@ jobs:
         with:
           eventName: ${{ github.event_name }}
           ref: ${{ github.ref }}
-          environmentName: ${{ github.event.inputs.environment }}
+          environment: ${{ github.event.inputs.environment }}
 
       - name: Print environment name
         run: echo "The environment name is $ENVIRONMENT_NAME"

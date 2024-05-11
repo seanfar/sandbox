@@ -2,6 +2,18 @@
 name: 'Setup Environments'
 description: 'Sets up Node.js, Ruby, and Java environments'
 
+inputs:
+  eventName:
+    description: 'The name of the event that triggered the workflow'
+    required: true
+  ref:
+    description: 'The branch or tag ref that triggered the workflow'
+    required: true
+  environment:
+    description: 'The environment name from workflow dispatch'
+    required: false
+    default: 'Production'
+
 runs:
   using: 'composite'
   steps:
@@ -16,7 +28,7 @@ runs:
         if [[ "${{ inputs.eventName }}" == "push" && "${{ inputs.ref }}" == "refs/heads/main" ]]; then
           echo "ENVIRONMENT_NAME=Staging" >> $GITHUB_ENV
         elif [[ "${{ inputs.eventName }}" == "workflow_dispatch" ]]; then
-          echo "ENVIRONMENT_NAME=${{ inputs.environmentName }}" >> $GITHUB_ENV
+          echo "ENVIRONMENT_NAME=${{ inputs.environment }}" >> $GITHUB_ENV
         else
           echo "ENVIRONMENT_NAME=Production" >> $GITHUB_ENV
         fi
