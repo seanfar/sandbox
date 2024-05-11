@@ -10,10 +10,13 @@ on:
   push:
     branches:
       - main
+  release:
+    types:
+      - published
 
 jobs:
   build:
-    environment: Production
+    environment: ${{ github.event.action == 'published' && 'Production' || 'Staging' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

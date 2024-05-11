@@ -29,6 +29,4 @@ runs:
           echo "ENVIRONMENT_NAME=Staging" >> $GITHUB_ENV
         elif [[ "${{ inputs.eventName }}" == "workflow_dispatch" ]]; then
           echo "ENVIRONMENT_NAME=${{ inputs.environment }}" >> $GITHUB_ENV
-        else
-          echo "ENVIRONMENT_NAME=Production" >> $GITHUB_ENV
         fi
