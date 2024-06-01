@@ -24,17 +24,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Use the custom action to set up Node.js, Ruby, and Java
-      - name: Setup Environments
-        uses: ./.github/actions/setup-environment
+      - name: Setup ruby
+        uses: actions/setup-ruby@v1
         with:
-          event_name: ${{ github.event_name }}
-      - name: Print environment name
-        run: echo "The environment name is $ENVIRONMENT_NAME"
+          ruby-version: 3.1.4
 
-      # Additional steps specific to this job
-      - name: Install dependencies
-        run: yarn install
+      - name: Run ruby script
+        env:
+          MOBILE_BOT_SLACK_TOKEN: ${{ secrets.MOBILE_BOT_SLACK_TOKEN }}
+        run: |
+          bundle exec fastlane run slack_message
+      # Use the custom action to set up Node.js, Ruby, and Java
+      # - name: Setup Environments
+      #   uses: ./.github/actions/setup-environment
+      #   with:
+      #     event_name: ${{ github.event_name }}
 
-      - name: Start the app
-        run: yarn start
+      # - name: Print environment name
+      #   run: |
+      #     echo "The environment name is $ENVIRONMENT_NAME"
