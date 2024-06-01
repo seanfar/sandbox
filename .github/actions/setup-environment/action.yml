@@ -10,10 +10,17 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
+    # - name: Setup Node.js
+    #   uses: actions/setup-node@v4
+    #   with:
+    #     node-version: 18
+        
+    - name: Linux - Download SSL Cert for Slack Message
+      run: |
+        if [[ "$(uname)" == "Linux" ]]; then
+          sudo wget -O /usr/lib/ssl/cert.pem "https://curl.haxx.se/ca/cacert.pem"
+        fi
+      shell: bash
 
     # - name: Set environment name
     #   shell: bash

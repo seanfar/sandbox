@@ -24,9 +24,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create SSL directory and symbolic link
-        run: |
-          sudo wget -O /usr/lib/ssl/cert.pem "https://curl.haxx.se/ca/cacert.pem"
+      - name: Setup Environments
+        uses: ./.github/actions/setup-environment
+        with:
+          event_name: ${{ github.event_name }}
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
@@ -39,11 +40,6 @@ jobs:
           SLACK_MOBILE_BOT_TOKEN: ${{ secrets.SLACK_MOBILE_BOT_TOKEN }}
         run: |
           bundle exec fastlane run slack_message
-      # Use the custom action to set up Node.js, Ruby, and Java
-      # - name: Setup Environments
-      #   uses: ./.github/actions/setup-environment
-      #   with:
-      #     event_name: ${{ github.event_name }}
 
       # - name: Print environment name
       #   run: |
