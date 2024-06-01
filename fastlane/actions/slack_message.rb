@@ -193,7 +193,7 @@ module Fastlane
                 },
                 {
                   "type": 'mrkdwn',
-                  "text": "*Environment:*\n#{Actions.lane_context[SharedValues::BUILD_ENVIRONMENT]}"
+                  "text": "*Environment:*"
                 }
               ]
             },
