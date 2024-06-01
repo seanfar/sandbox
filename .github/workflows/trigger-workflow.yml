@@ -24,8 +24,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set SSL_CERT_FILE environment variable
-        run: sudo ln -s /etc/ssl/certs/ca-certificates.crt /usr/local/ssl/cert.pem
+      - name: Create SSL directory and symbolic link
+        run: |
+          sudo mkdir -p /usr/local/ssl
+          sudo ln -s /etc/ssl/certs/ca-certificates.crt /usr/local/ssl/cert.pem
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
