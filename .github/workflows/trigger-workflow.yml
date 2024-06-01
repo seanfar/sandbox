@@ -29,6 +29,12 @@ jobs:
           sudo mkdir -p /usr/local/ssl
           sudo ln -s /etc/ssl/certs/ca-certificates.crt /usr/local/ssl/cert.pem
 
+      - name: Debug SSL setup
+        run: |
+          ls -l /etc/ssl/certs/
+          ls -l /usr/local/ssl/
+          cat /usr/local/ssl/cert.pem
+
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
