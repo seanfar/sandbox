@@ -32,7 +32,7 @@ jobs:
 
       - name: Run ruby script
         env:
-          MOBILE_BOT_SLACK_TOKEN: ${{ secrets.MOBILE_BOT_SLACK_TOKEN }}
+          SLACK_MOBILE_BOT_TOKEN: ${{ secrets.SLACK_MOBILE_BOT_TOKEN }}
         run: |
           bundle exec fastlane run slack_message
       # Use the custom action to set up Node.js, Ruby, and Java
