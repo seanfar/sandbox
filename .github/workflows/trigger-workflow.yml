@@ -26,26 +26,13 @@ jobs:
 
       - name: Create SSL directory and symbolic link
         run: |
-          sudo mkdir -p /usr/local/ssl
-          sudo ln -s /etc/ssl/certs/ca-certificates.crt /usr/local/ssl/cert.pem
-
-      - name: Set SSL environment variables
-        run: |
-          echo "SSL_CERT_FILE=/usr/local/ssl/cert.pem" >> $GITHUB_ENV
-          echo "SSL_CERT_DIR=/usr/lib/ssl/certs" >> $GITHUB_ENV
+          sudo wget -O /usr/lib/ssl/cert.pem "https://curl.haxx.se/ca/cacert.pem"
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1.4
           bundler-cache: true
-
-      - name: Verify SSL_CERT_FILE
-        run: |
-          if [ ! -f /usr/local/ssl/cert.pem ]; then
-            echo "SSL_CERT_FILE does not exist"
-            exit 1
-          fi
 
       - name: Run ruby script
         env:
