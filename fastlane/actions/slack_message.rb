@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'slack-ruby-client'
+require 'openssl'
+OpenSSL::SSL::SSLContext::DEFAULT_CERT_STORE.set_default_paths
 
 module Fastlane
   module Actions
