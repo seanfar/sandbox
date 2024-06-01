@@ -37,8 +37,6 @@ jobs:
       - name: Run ruby script
         env:
           SLACK_MOBILE_BOT_TOKEN: ${{ secrets.SLACK_MOBILE_BOT_TOKEN }}
-          SSL_CERT_FILE: /usr/local/ssl/cert.pem
-          SSL_CERT_DIR: /usr/lib/ssl/certs
         run: |
           bundle exec fastlane run slack_message
       # Use the custom action to set up Node.js, Ruby, and Java

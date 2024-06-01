@@ -1,35 +1,6 @@
 # frozen_string_literal: true
 
 require 'slack-ruby-client'
-require 'openssl'
-
-# Print OpenSSL version and default paths
-puts "OpenSSL version: #{OpenSSL::OPENSSL_VERSION}"
-puts "Default SSL cert file: #{OpenSSL::X509::DEFAULT_CERT_FILE}"
-puts "Default SSL cert dir: #{OpenSSL::X509::DEFAULT_CERT_DIR}"
-
-# Check environment variables
-puts "SSL_CERT_FILE: #{ENV['SSL_CERT_FILE']}"
-puts "SSL_CERT_DIR: #{ENV['SSL_CERT_DIR']}"
-
-# Verify if SSL_CERT_FILE exists
-if File.exist?(ENV['SSL_CERT_FILE'])
-  puts "SSL_CERT_FILE exists"
-else
-  puts "SSL_CERT_FILE does not exist"
-end
-
-# Verify if SSL_CERT_DIR exists
-if Dir.exist?(ENV['SSL_CERT_DIR'])
-  puts "SSL_CERT_DIR exists"
-else
-  puts "SSL_CERT_DIR does not exist"
-end
-
-# Print default cert store paths
-store = OpenSSL::X509::Store.new
-store.set_default_paths
-puts "Default cert store paths: #{store}"
 
 module Fastlane
   module Actions
