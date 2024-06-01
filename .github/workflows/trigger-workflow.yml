@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set SSL_CERT_FILE environment variable
-        run: echo "SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
+        run: sudo ln -s /etc/ssl/certs/ca-certificates.crt /usr/local/ssl/cert.pem
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
